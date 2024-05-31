@@ -76,7 +76,7 @@ Follow the steps in the notebook to:
 
 ## Screenshots
 
-![local graph](./local_kg.png)
+![local graph](./graph.png)
 
 ## Documentation
 
