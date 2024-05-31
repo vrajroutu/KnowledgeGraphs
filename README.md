@@ -18,8 +18,8 @@ Ensure you have the following installed:
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/your-repo-name.git
-cd your-repo-name
+git clone https://github.com/yourusername/KnowledgeGraphs.git
+cd KnowledgeGraphs
 ```
 
 Install the required Python packages:
@@ -45,7 +45,7 @@ wget 'https://raw.githubusercontent.com/yourusername/your-repo-name/main/data/pa
 To run the notebook, use Jupyter Notebook or Jupyter Lab:
 
 ```bash
-jupyter notebook property_graph_advanced.ipynb
+jupyter notebook knowledgegraphs.ipynb
 ```
 
 ### Setting Up Neo4j
