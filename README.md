@@ -10,7 +10,7 @@ This repository demonstrates how to build a property graph using Neo4j, Ollama, 
 Ensure you have the following installed:
 
 - Docker
-- Python 3.7 or later
+- Python 3.9 or later
 - Jupyter Notebook or Jupyter Lab
 
 ### Installation
