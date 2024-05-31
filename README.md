@@ -18,7 +18,7 @@ Ensure you have the following installed:
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/KnowledgeGraphs.git
+git clone https://github.com/vrajroutu/KnowledgeGraphs.git
 cd KnowledgeGraphs
 ```
 
