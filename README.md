@@ -89,21 +89,5 @@ With the created graph, you can perform queries using `LLMSynonymRetriever` and 
 This notebook demonstrates the integration of Neo4j, Azure OpenAI, and `llama_index` to construct and query a knowledge graph. The resulting graph includes entities and relations following the predefined schema.
 
 For more information on `kg_extractors`, refer to the [documentation](../../module_guides/indexing/lpg_index_guide.md#construction).
-```
 
-## Screenshots
-
-![local graph](./graph.png)
-
-## License
-
-[Specify the license under which your project is licensed. If you're not sure, you can use the MIT license as a starting point.]
-
-## Contributions
-
-[Provide guidelines on how others can contribute to your project, if applicable.]
-
-## Contact
-
-[Provide your contact information, if you want others to be able to reach out to you.]
 
