@@ -1,56 +1,54 @@
 
-# Property Graph Construction with Predefined Schemas
 
-This repository demonstrates how to build a property graph using Neo4j, Ollama, and Huggingface. The notebook uses `SchemaLLMPathExtractor` to specify an exact schema containing possible entity types, relation types, and defining how they can be connected together. This approach is useful when you have a specific graph in mind and want to limit what the LLM is predicting.
+```markdown
+# Knowledge Graphs with Azure OpenAI
 
-## Getting Started
+This notebook demonstrates how to use Neo4j and Azure OpenAI to build a property graph. The example uses the `SchemaLLMPathExtractor` to specify an exact schema containing possible entity types, relation types, and defining how they can be connected together.
 
-### Prerequisites
+## Installation
 
-Ensure you have the following installed:
-
-- Docker
-- Python 3.9 or later
-- Jupyter Notebook or Jupyter Lab
-
-### Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/vrajroutu/KnowledgeGraphs.git
-cd KnowledgeGraphs
-```
-
-Install the required Python packages:
+To run this notebook, you need to install the following Python packages:
 
 ```bash
 pip install llama-index
 pip install llama-index-llms-ollama
 pip install llama-index-embeddings-huggingface
 pip install llama-index-graph-stores-neo4j
+pip install openai
+pip install llama-index-embeddings-azure-openai
+pip install llama-index-llms-azure-openai
 ```
 
-### Data Setup
+## Data Loading
 
-Download the sample data used in the notebook:
+The notebook loads data from a Paul Graham essay. Ensure you have the necessary data by running:
 
-```bash
-mkdir -p 'data/paul_graham/'
-wget 'https://raw.githubusercontent.com/yourusername/your-repo-name/main/data/paul_graham/paul_graham_essay.txt' -O 'data/paul_graham/paul_graham_essay.txt'
+```python
+!mkdir -p './azdev/paulgraham'
+!curl -o 'https://raw.githubusercontent.com/run-llama/llama_index/main/docs/docs/examples/data/paul_graham/paul_graham_essay.txt' -O 'data/paul_graham/paul_graham_essay.txt'
 ```
 
-### Running the Notebook
+## Graph Construction
 
-To run the notebook, use Jupyter Notebook or Jupyter Lab:
+The notebook constructs a property graph using the `SchemaLLMPathExtractor`. This extractor allows us to define a schema for our graph, ensuring the entities and relations follow a predefined structure.
 
-```bash
-jupyter notebook knowledgegraphs.ipynb
-```
+### Example Schema
 
-### Setting Up Neo4j
+Entities:
+- PERSON
+- PLACE
+- ORGANIZATION
 
-Ensure you have Docker installed and run the following command to set up Neo4j:
+Relations:
+- HAS
+- PART_OF
+- WORKED_ON
+- WORKED_WITH
+- WORKED_AT
+
+## Neo4j Setup
+
+To launch Neo4j locally, ensure Docker is installed and run:
 
 ```bash
 docker run \
@@ -60,47 +58,52 @@ docker run \
     -e NEO4J_apoc_export_file_enabled=true \
     -e NEO4J_apoc_import_file_enabled=true \
     -e NEO4J_apoc_import_file_use__neo4j__config=true \
-    -e NEO4JLABS_PLUGINS=[\"apoc\"] \
+    -e NEO4J_AUTH=neo4j/database4591 \
+    -e NEO4JLABS_PLUGINS=\["apoc"\] \
     neo4j:latest
 ```
 
-Access Neo4j at [http://localhost:7474/](http://localhost:7474/) and log in with the default username/password `neo4j`/`neo4j`. Change the password upon first login.
+Access the database at [http://localhost:7474/](http://localhost:7474/). Use the default username/password `neo4j`/`neo4j` and change the password upon first login.
 
-### Usage
+## Azure OpenAI Setup
 
-Follow the steps in the notebook to:
+Set your Azure OpenAI environment variables:
 
-1. Load data.
-2. Construct the property graph.
-3. Query the graph.
+```python
+import os
+
+os.environ["AZURE_OPENAI_API_KEY"] = "<your-api-key>"
+os.environ["AZURE_OPENAI_ENDPOINT"] = "<your-azure-endpoint>"
+```
+
+## Graph Index Creation
+
+Initialize the `PropertyGraphIndex` using the schema, documents, and Azure OpenAI embeddings.
+
+## Querying the Graph
+
+With the created graph, you can perform queries using `LLMSynonymRetriever` and `VectorContextRetriever`.
+
+## Conclusion
+
+This notebook demonstrates the integration of Neo4j, Azure OpenAI, and `llama_index` to construct and query a knowledge graph. The resulting graph includes entities and relations following the predefined schema.
+
+For more information on `kg_extractors`, refer to the [documentation](../../module_guides/indexing/lpg_index_guide.md#construction).
+```
 
 ## Screenshots
 
 ![local graph](./graph.png)
 
-## Documentation
-
-For detailed documentation, refer to the module guides:
-
-- [SchemaLLMPathExtractor](https://link-to-schema-llm-path-extractor-docs)
-- [LLMSynonymRetriever](https://link-to-llm-synonym-retriever-docs)
-- [VectorContextRetriever](https://link-to-vector-context-retriever-docs)
-
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request for any changes.
-
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+[Specify the license under which your project is licensed. If you're not sure, you can use the MIT license as a starting point.]
 
-## Acknowledgements
+## Contributions
 
-- [Llama Index](https://github.com/run-llama/llama_index)
-- [Neo4j](https://neo4j.com/)
-- [Huggingface](https://huggingface.co/)
+[Provide guidelines on how others can contribute to your project, if applicable.]
 
 ## Contact
 
-For any questions or issues, please open an issue in the repository.
+[Provide your contact information, if you want others to be able to reach out to you.]
 
